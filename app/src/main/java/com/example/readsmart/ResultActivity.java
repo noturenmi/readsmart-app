@@ -41,7 +41,7 @@ public class ResultActivity extends AppCompatActivity {
             editor.apply();
 
         } else {
-            txtScore.setText("View Results History");
+            txtScore.setText("View Results");
             txtFeedback.setText("");
         }
 
