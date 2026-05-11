@@ -64,7 +64,6 @@ public class ResultActivity extends AppCompatActivity {
                     "MMM dd, yyyy - hh:mm a",
                     Locale.getDefault()
             ).format(new Date());
-
             String newEntry =
                     "[" + currentDate + "]\n" +
                             "Score: " + score + "/3 | " + feedback + "\n\n";
