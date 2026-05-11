@@ -5,6 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.graphics.Typeface;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,7 +35,28 @@ public class ResultActivity extends AppCompatActivity {
         // CURRENT RESULT MODE
         if (score != -1 && feedback != null) {
 
-            txtScore.setText("Latest Score: " + score + " / 3");
+            // Stylish Score Display
+            String scoreText = score + "/3";
+
+            SpannableString spannable = new SpannableString(scoreText);
+
+// Make score number bigger
+            spannable.setSpan(
+                    new RelativeSizeSpan(2.2f),
+                    0,
+                    String.valueOf(score).length(),
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            );
+
+// Make score bold
+            spannable.setSpan(
+                    new StyleSpan(Typeface.BOLD),
+                    0,
+                    String.valueOf(score).length(),
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            );
+
+            txtScore.setText(spannable);
             txtFeedback.setText("Feedback: " + feedback);
 
             // SAVE HISTORY ONLY WHEN REAL RESULT EXISTS
