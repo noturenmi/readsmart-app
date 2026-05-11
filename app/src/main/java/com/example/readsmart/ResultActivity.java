@@ -10,6 +10,9 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -61,7 +64,16 @@ public class ResultActivity extends AppCompatActivity {
 
             // SAVE HISTORY ONLY WHEN REAL RESULT EXISTS
             String oldHistory = prefs.getString("history", "");
-            String newEntry = "Score: " + score + "/3 | " + feedback + "\n";
+            // Current Date and Time
+            String currentDate = new SimpleDateFormat(
+                    "MMM dd, yyyy - hh:mm a",
+                    Locale.getDefault()
+            ).format(new Date());
+
+// History Entry Format
+            String newEntry =
+                    "[" + currentDate + "]\n" +
+                            "Score: " + score + "/3 | " + feedback + "\n\n";
 
             editor.putString("history", oldHistory + newEntry);
             editor.apply();
