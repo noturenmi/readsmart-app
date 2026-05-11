@@ -35,15 +35,12 @@ public class ResultActivity extends AppCompatActivity {
         int score = getIntent().getIntExtra("score", -1);
         String feedback = getIntent().getStringExtra("feedback");
 
-        // CURRENT RESULT MODE
         if (score != -1 && feedback != null) {
 
-            // Stylish Score Display
             String scoreText = score + "/3";
 
             SpannableString spannable = new SpannableString(scoreText);
 
-// Make score number bigger
             spannable.setSpan(
                     new RelativeSizeSpan(2.2f),
                     0,
@@ -51,7 +48,6 @@ public class ResultActivity extends AppCompatActivity {
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
             );
 
-// Make score bold
             spannable.setSpan(
                     new StyleSpan(Typeface.BOLD),
                     0,
@@ -62,15 +58,13 @@ public class ResultActivity extends AppCompatActivity {
             txtScore.setText(spannable);
             txtFeedback.setText("Feedback: " + feedback);
 
-            // SAVE HISTORY ONLY WHEN REAL RESULT EXISTS
             String oldHistory = prefs.getString("history", "");
-            // Current Date and Time
+
             String currentDate = new SimpleDateFormat(
                     "MMM dd, yyyy - hh:mm a",
                     Locale.getDefault()
             ).format(new Date());
 
-// History Entry Format
             String newEntry =
                     "[" + currentDate + "]\n" +
                             "Score: " + score + "/3 | " + feedback + "\n\n";
@@ -83,7 +77,6 @@ public class ResultActivity extends AppCompatActivity {
             txtFeedback.setText("");
         }
 
-        // LOAD HISTORY
         String history = prefs.getString("history", "");
 
         if (history.trim().isEmpty()) {

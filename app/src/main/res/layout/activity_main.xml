@@ -12,7 +12,6 @@
         android:padding="24dp"
         android:background="#FFFFFF">
 
-        <!-- READSMART Title -->
         <TextView
             android:id="@+id/txtTitle"
             android:layout_width="wrap_content"
